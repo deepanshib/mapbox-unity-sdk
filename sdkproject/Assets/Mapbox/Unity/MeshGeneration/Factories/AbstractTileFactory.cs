@@ -41,9 +41,9 @@
 		/// The  <c>OnTileError</c> event triggers when there's <c>Tile</c> error.
 		/// Returns a <see cref="T:Mapbox.Map.TileErrorEventArgs"/> instance as a parameter, for the tile on which error occurred.
         /// </summary>
-		public event Action<TileErrorEventArgs> OnTileError = delegate { };
+		public event EventHandler<TileErrorEventArgs> OnTileError;
 
-        public void Initialize(IFileSource fileSource)
+		public void Initialize(IFileSource fileSource)
         {
 			_progress = 0;
 			_fileSource = fileSource;
@@ -63,11 +63,12 @@
             tile.OnTileError -= Tile_OnTileErrorEvent;
         }
 
-		private void Tile_OnTileErrorEvent(TileErrorEventArgs e)
+		private void Tile_OnTileErrorEvent(object sender, TileErrorEventArgs e)
         {
-            if (OnTileError != null)
+			EventHandler<TileErrorEventArgs> handler = OnTileError;
+			if (handler != null)
             {
-                OnTileError(e);
+				handler(this, e);
             }
         }
 

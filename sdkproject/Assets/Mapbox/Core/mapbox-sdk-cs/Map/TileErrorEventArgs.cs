@@ -4,7 +4,8 @@
 	using Mapbox.Unity.MeshGeneration.Data;
 	using System.Collections.Generic;
 
-	public class TileErrorEventArgs {
+	public class TileErrorEventArgs : EventArgs
+	{
 
 		/// <summary>
 		/// The tile identifier.
@@ -30,12 +31,12 @@
 		/// <param name="TileType">Tile type.</param>
 		/// <param name="UnityTileInstance">Unity tile instance.</param>
 		/// <param name="Exceptions">Exceptions.</param>
-		public TileErrorEventArgs(CanonicalTileId TileId, Type TileType, UnityTile UnityTileInstance, List<Exception> Exceptions)
+		public TileErrorEventArgs(CanonicalTileId TileId, Type TileType, UnityTile UnityTileInstance, List<Exception> Exceptions) 
 		{
 			this.TileId = TileId;
 			this.Exceptions = Exceptions;
 			this.UnityTileInstance = UnityTileInstance;
 			this.TileType = TileType;
 		}
-	}
+}
 }

@@ -28,7 +28,7 @@
 			_mapInstance.MapVisualizer.OnTileError += _OnTileErrorHandler;
 		}
 
-		private void _OnTileErrorHandler(TileErrorEventArgs e)
+		private void _OnTileErrorHandler(object sender, TileErrorEventArgs e)
 		{
 
 			if (e.Exceptions.Count > 0)
